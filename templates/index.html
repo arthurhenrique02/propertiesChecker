@@ -46,8 +46,10 @@
                         <div class="accordian-body collapse" id="change{{ loop.index }}">
                             <p>Detalhes do {{ entry["N° do imóvel"] }}</p>
                             <hr class="border border-primary ms-5 me-5 border-3 opacity-75">
-                            {{ entry["msg"] }}
-                            <hr class="border border-primary ms-5 me-5 border-3 opacity-75">
+                            {% for message in entry["msg"].split("\n") %}
+                                    {{ message }}
+                                    <hr class="border border-secondary ms-5 me-5 border-3 opacity-75">
+                            {% endfor %}
                         </div>
                     </td>
                 </tr>
