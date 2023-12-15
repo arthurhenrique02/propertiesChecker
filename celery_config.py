@@ -18,7 +18,7 @@ def init_celery(app: Flask) -> Celery:
     celery.conf.beat_schedule = {
         "get_properties_list_daily": {
             "task": "utils.scrapper.download_and_move_properties_list",
-            "schedule": 30,  # crontab(minute="1", hour="0", day_of_week="*"),
+            "schedule": crontab(minute="1", hour="0", day_of_week="*"),
         },
     }
 
