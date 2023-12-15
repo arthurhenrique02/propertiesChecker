@@ -1,10 +1,17 @@
+import pymongo
+from decouple import config
 from flask import Flask
+from flask_pymongo import PyMongo
 
 import utils
 from celery_config import init_celery
 
 # create Flask app
 app = Flask(__name__)
+
+# config mondodb
+app.config["MONGO_URI"] = config("MONGO_URL", "CHANGE ME")
+mongo = PyMongo(app)
 
 # config celery and initialize
 app.config["CELERY_BROKER_URL"] = "pyamqp://guest:guest@localhost//"
