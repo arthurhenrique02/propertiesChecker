@@ -40,5 +40,6 @@ def save_changes_on_db(data: dict, msg: List[str] = None):
         return
 
     print("Inserting...")
-    # insert by default
+    # add message field and insert by default
+    data["msg"] = ""
     mongo.db.properties_checker.insert_one(data)
