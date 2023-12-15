@@ -1,7 +1,6 @@
 import datetime
 import logging
 import shutil
-import uuid
 from pathlib import Path
 
 import pandas as pd
@@ -10,7 +9,7 @@ from selenium.webdriver.common.by import By
 
 from utils import browser
 
-from .save_changes import save_changes_on_db
+from .db_actions import add_new_property, save_changes_on_db
 from .wait import wait_download_or_move
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -97,6 +96,14 @@ def compare_and_update_files() -> None:
             logging.error(f"Não foi possível ler o arquivo com o encoding {encoding}")
             continue
 
+    # add new elements to db
+    for index, row in todays_file.iterrows():
+        # add new property
+        add_new_property.delay(
+            {key.strip(): val for key, val in row.items() if key != "Unnamed: 0"},
+            f"{today.strftime('%d/%m/%Y, %H:%M')} - Novo imóvel adicionado",
+        )
+
     # merge only different cells
     merged_csv = pd.merge(
         # sort values to avoid errors
@@ -141,11 +148,6 @@ def compare_and_update_files() -> None:
 
         # remove _merge key
         data.pop("_merge", None)
-
-        # check if msg dont exists
-        if not msg:
-            msg.append(f"{today.strftime('%d/%m/%Y, %H:%M')} - "
-                       f"Imóvel adicionado")
 
         # save on db after all changes
         save_changes_on_db(data, msg)
