@@ -87,8 +87,6 @@ def compare_and_update_files():
             logging.error(f"Não foi possível ler o arquivo com o encoding {encoding}")
             continue
 
-    # concat_csv = pd.concat([todays_file, yesterdays_file]).drop_duplicates(keep=False)
-
     # merge only different cells
     merged_csv = pd.merge(
         # sort values to avoid errors
