@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Imóveis</title>
+</head>
+<body>
+
+<div class="container mt-5 d-flex justify-content-center">
+    <!-- TABLE WITH CSS TO SHOW ALL PROPERTIES -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>N° do imóvel</th>
+                <th>UF</th>
+                <th>Bairro</th>
+                <th>Endereço</th>
+                <th>Preço</th>
+                <th>Valor de avaliação</th>
+                <th>Desconto</th>
+                <th>Descrição</th>
+                <th>Modalidade de venda</th>
+                <th>Link de acesso</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- SHOW INITIAL DATA -->
+            {% for entry in data %}
+                <tr data-toggle="collapse" data-target="#change{{ loop.index }}" class="accordion-toggle">
+                    <td>{{ entry["N° do imóvel"] }}</td>
+                    <td>{{ entry.UF }}</td>
+                    <td>{{ entry.Bairro }}</td>
+                    <td>{{ entry.Endereço }}</td>
+                    <td>{{ entry.Preço }}</td>
+                    <td>{{ entry["Valor de avaliação"] }}</td>
+                    <td>{{ entry.Desconto }}</td>
+                    <td>{{ entry.Descrição }}</td>
+                    <td>{{ entry["Modalidade de venda"] }}</td>
+                    <td>{{ entry["Link de acesso"] }}</td>
+                </tr>
+                <tr>
+                    <!-- GET MESSAGES AND SHOW -->
+                    <td colspan="11" class="hiddenRow">
+                        <div class="accordian-body collapse" id="change{{ loop.index }}">
+                            <p>Detalhes do {{ entry["N° do imóvel"] }}</p>
+                            <hr class="border border-primary ms-5 me-5 border-3 opacity-75">
+                            {{ entry["msg"] }}
+                            <hr class="border border-primary ms-5 me-5 border-3 opacity-75">
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.9/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>
