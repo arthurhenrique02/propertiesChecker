@@ -129,8 +129,8 @@ def compare_and_update_files():
                 # just add the col
                 data[col.strip()] = row[col]
 
-            # remove _merge key
-            data.pop("_merge", None)
+        # remove _merge key
+        data.pop("_merge", None)
 
         # check if msg dont exists
         if not msg:
