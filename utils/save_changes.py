@@ -4,8 +4,8 @@ from typing import List
 from main import mongo
 
 
-def save_changes_on_db(data: dict, msg: List[str] = None):
-    """Save changes on database."""
+def save_changes_on_db(data: dict, msg: List[str] = None) -> None:
+    """Save on database."""
 
     # check if data already exists
     if mongo.db.properties_checker.find_one({"N° do imóvel": data["N° do imóvel"]}):

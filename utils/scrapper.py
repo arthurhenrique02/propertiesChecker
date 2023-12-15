@@ -19,7 +19,14 @@ FILES_DIR = f"{BASE_DIR}\\files"
 
 
 @shared_task
-def download_and_move_properties_list():
+def download_and_move_properties_list() -> None:
+    """
+    Async task task that will donwload the properties list from Caixa`s 
+    site and move it to the project folder.
+
+    After moving, it will call another task (compare_and_update_files)
+    to compare the files and save the changes on database.
+    """
     # go to Caixa`s site
     browser.get("https://venda-imoveis.caixa.gov.br/sistema/download-lista.asp")
 
@@ -58,7 +65,11 @@ def download_and_move_properties_list():
 
 
 @shared_task
-def compare_and_update_files():
+def compare_and_update_files() -> None:
+    """
+        Async task that will compare the files from yesterday and today, get
+        the differences and update on db.
+    """
     # get curr date
     today = datetime.datetime.now()
     yesterday = today - datetime.timedelta(days=1)

@@ -4,6 +4,7 @@ from flask import Flask
 
 
 def init_celery(app: Flask) -> Celery:
+    """A function to call in Flask app and initialize Celery"""
     # create celery instance with the broker from app config
     celery = Celery(
         app.import_name,
