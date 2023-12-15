@@ -36,7 +36,6 @@ def download_and_move_properties_list():
 
     # get curr date
     today = datetime.datetime.now()
-    rand_uuid = str(uuid.uuid4())
 
     # rename file and move to project folder (file folder)
     shutil.move(
