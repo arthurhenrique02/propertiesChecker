@@ -12,10 +12,6 @@
 
 :small_blue_diamond: [Endpoints](#Endpoints)
 
-:small_blue_diamond: [Informações do JSON](#Informações-do-JSON-floppy_disk)
-
-:small_blue_diamond: [Desenvolvedores](#Desenvolvedores)
-
 ## Sobre
 Aplicação feita para checar dados de forma automática através de tabelas (csv) de dados disponibilizadoos pela Caixa.
 
