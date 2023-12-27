@@ -15,7 +15,7 @@ def add_new_property(data: dict, msg: str = "") -> None:
         return
 
     # add message field and insert
-    msg += "{msg}\n"
+    msg += f"{msg}\n"
     data["msg"] = msg
     mongo.db.properties_checker.insert_one(data)
 

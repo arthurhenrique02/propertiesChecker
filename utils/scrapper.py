@@ -150,4 +150,4 @@ def compare_and_update_files() -> None:
         data.pop("_merge", None)
 
         # save on db after all changes
-        save_changes_on_db(data, [f"343434334 {index}"])
+        save_changes_on_db(data, msg)
